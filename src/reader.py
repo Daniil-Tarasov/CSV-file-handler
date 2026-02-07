@@ -5,12 +5,7 @@ def get_data_from_csv(path_to_file):
     """Функция, которая возвращает данные (country, gdp) из файла csv"""
     all_country_gdps = {}
 
-    if isinstance(path_to_file, str):
-        files = [path_to_file]
-    else:
-        files = path_to_file
-
-    for file_path in files:
+    for file_path in path_to_file:
         country_gdps = {}
         try:
             with open(file_path, encoding="utf-8") as file:

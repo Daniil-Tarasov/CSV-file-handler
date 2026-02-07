@@ -1,4 +1,4 @@
-from unittest.mock import patch, mock_open
+from unittest.mock import mock_open, patch
 
 import pytest
 
@@ -17,11 +17,11 @@ Germany,2023,4086,-0.3,6.2,3.0,83,Europe
 """
 
 
-@patch('builtins.print')
+@patch("builtins.print")
 def test_file_not_found(mock_print):
     """Тест отсутствующего файла."""
-    with patch('builtins.open', side_effect=FileNotFoundError):
-        result = get_data_from_csv(['missing.csv'])
+    with patch("builtins.open", side_effect=FileNotFoundError):
+        result = get_data_from_csv(["missing.csv"])
 
     mock_print.assert_called_with("Файл не найден: missing.csv")
     assert result == {}
@@ -31,8 +31,8 @@ def test_empty_csv():
     """Тест пустого CSV."""
     empty_csv = "country,year,gdp"
 
-    with patch('builtins.open', mock_open(read_data=empty_csv)):
-        result = get_data_from_csv(['empty.csv'])
+    with patch("builtins.open", mock_open(read_data=empty_csv)):
+        result = get_data_from_csv(["empty.csv"])
 
     assert result == {}
 
